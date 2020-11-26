@@ -1,2 +1,12 @@
-<h1>Welcome <%= @user.email %> </h1>
-<% binding.pry %>
+<h1>Welcome <%= current_user.email %> </h1>
+<%= link_to 'Discover Movies', discover_path%>
+<section class="friends-section">
+
+</section>
+<section class="viewing-parties">
+<%= form_with(url: friends_path, method: 'post', local: true)  do %>
+  <%= label_tag(:email, "Search for friends by email") %>
+  <%= text_field_tag(:email) %>
+  <%= button_to 'Add Friend', friends_path%>
+<% end %>
+</section>
