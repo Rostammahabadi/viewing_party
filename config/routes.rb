@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get '/registration', to: 'registration#index'
   post '/registration', to: 'registration#create'
   get '/dashboard', to: 'dashboard#index'
+  get '/discover', to: 'discover#index'
+  post '/friends', to: 'friends#create'
 end
