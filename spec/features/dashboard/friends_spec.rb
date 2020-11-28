@@ -18,8 +18,21 @@ RSpec.describe 'on the dashboard in the friends section' do
   it 'should search for a friend in the data base and error out if they are not there' do 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     visit "/dashboard"
-    fill_in :email, with: 'asdf@gmail.com'
+    fill_in :email, with: 'asdf123@gmail.com'
     click_on 'Add Friend'
     expect(page).to have_content('Could not find a user by this email')
+  end
+
+  xit 'should show a message if an authenticated user has no friends' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    visit "/dashboard"
+    User.create(email: 'asdf123@gmail.com', password: 'password', password_digest: 'password')
+    page.fill_in 'email', with: 'asdf123@gmail.com'
+    binding.pry
+    click_on 'Add Friend'
+    expect(page).to have_content('Successfully added friend')
+    within '.friends-section' do
+      expect(page).to have_content('asdf123@gmail.com')
+    end
   end
 end

@@ -36,7 +36,7 @@ RSpec.describe 'Registration page' do
       fill_in 'Password', with: 'asdfasdf'
       fill_in 'password confirmation', with: 'fsdaasdf'
       click_on 'Submit'
-      expect(page).to have_content("Password confirmation doesn't match Password and Password confirmation doesn't match Password")
+      expect(page).to have_content("Password confirmation doesn't match Password\nEmail: Password: password confirmation")
     end
 
     it 'should error out if the password isnt at least 6 characters' do
