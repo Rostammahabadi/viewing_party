@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
   get '/discover', to: 'discover#index'
   post '/friends', to: 'friends#create'
+  post '/login', to: 'session#create'
+  delete '/logout', to: 'session#destroy'
 end
