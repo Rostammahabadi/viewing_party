@@ -1,5 +1,10 @@
 <h1>Welcome <%= current_user.email %> </h1>
-<%= link_to 'Discover Movies', discover_path%>
+<div>
+  <%= link_to 'Discover Movies', discover_path%>
+</div>
+<div>
+  <%= link_to 'Logout', logout_path, method: 'delete' %>
+</div>
 <section class="friends-section">
 <% if @friends.empty? %>
   <h2>You currently have no friends.</h2>
@@ -13,7 +18,7 @@
 <section class="viewing-parties">
   <%= form_with(url: friends_path, method: 'post', local: true)  do %>
     <%= label_tag(:email, "Search for friends by email") %>
-    <%= text_field_tag(:email) %>
-    <%= button_to 'Add Friend', friends_path%>
+    <%= text_field_tag 'email', '', class:'email' %>
+    <%= button_to 'Add Friend', friends_path %>
   <% end %>
 </section>
