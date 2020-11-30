@@ -15,9 +15,7 @@ RSpec.describe "welcome screen" do
     end
 
     it 'should have a button to login' do
-      within '.login' do
-        expect(page).to have_content('Log in')
-      end
+      expect(page).to have_button('Log in')
     end
 
     it 'should have a link to registration' do

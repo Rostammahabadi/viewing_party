@@ -47,6 +47,19 @@ RSpec.describe 'when i visit the dashboard page' do
     visit "/dashboard"
     click_on 'Discover Movies' 
     expect(current_path).to eq('/discover')
-    end
+  end
+
+  xit 'has a logout button which returns you back to the homepage' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    visit "/dashboard"
+    click_on 'Logout'
+    binding.pry
+    expect(current_path).to eq(root_path)
+  end
+
+  xit 'doesnt allow you add a friend twice' do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    visit "/dashboard"
+  end
 
 end
