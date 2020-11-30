@@ -1,4 +1,10 @@
 <h1>Welcome to Viewing Party</h1>
 <p>Brief description of application</p>
-<button class='login'> Log in</button>
+<%= form_with(url: "/login", local: true) do %>
+  <%= label_tag(:email, "Email")%>
+  <%= text_field_tag(:email) %>
+  <%= label_tag(:password, "Password")%>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Log in") %>
+<% end %>
 <%= link_to "New to Viewing Party? Register Here", registration_path %>
