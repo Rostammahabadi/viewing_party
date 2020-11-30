@@ -6,8 +6,11 @@ class FriendsController < ApplicationController
         redirect_to dashboard_path, notice: "You are already friend with this person!" 
         return
       end
-      add_friend(user)
-      redirect_to dashboard_path, notice: "Successfully added friend"
+      if add_friend(user)
+        redirect_to dashboard_path, notice: "Successfully added friend"
+      else
+        redirect_to dashboard_path, notice: @friend.errors.full_messages.to_sentence
+      end
     else
       redirect_to dashboard_path, notice: 'Could not find a user by this email'
     end
@@ -21,11 +24,8 @@ class FriendsController < ApplicationController
 
   def add_friend(user)
     @friend = Friend.new(user_id: current_user.id, followed_user_id: user.id)
-    if @friend.save!
-      return
-    else
-      redirect_to dashboard_path, notice: @friend.errors.full_messages.to_sentence
-    end
+    return true if @friend.save
+    return false
   end
 
   def check_for_duplicates(user)
